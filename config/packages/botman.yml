@@ -1,0 +1,28 @@
+services:
+    _defaults:
+        autowire: true
+
+    BotMan\BotMan\BotManFactory:
+        class: BotMan\BotMan\BotManFactory
+
+    BotMan\BotMan\Http\Curl:
+        class: BotMan\BotMan\Http\Curl
+
+    BotMan\BotMan\Drivers\DriverManager:
+        arguments: ['%botman_config%', '@BotMan\BotMan\Http\Curl']
+        calls:
+            - method: loadDriver
+              arguments: ['BotMan\Drivers\Telegram\TelegramDriver']
+
+    BotMan\Drivers\Telegram\TelegramDriver:
+        factory: 'BotMan\BotMan\Drivers\DriverManager:loadFromName'
+        arguments: ['BotMan\Drivers\Telegram\TelegramDriver', '%botman_config%']
+
+    BotMan\BotMan\BotMan:
+        factory: 'BotMan\BotMan\BotManFactory:create'
+        arguments: ['%botman_config%']
+        calls:
+            - method: setDriver
+              arguments: ['@BotMan\Drivers\Telegram\TelegramDriver']
+            - method: setContainer
+              arguments: ['@service_container']

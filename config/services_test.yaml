@@ -1,0 +1,31 @@
+services:
+    _defaults:
+        public: true
+        autowire: true
+
+    App\Repository\:
+        resource: '../src/Repository/*'
+        tags: ['doctrine.repository_service']
+
+    App\Tests\Integration\GitHubMock:
+        class: App\Tests\Integration\GitHubMock
+
+    App\Bot\Controller\SubscriptionController:
+        arguments:
+          $gitHostings: ['@App\Tests\Integration\GitHubMock']
+
+    App\Bot\Middleware\AdminMiddleware:
+        arguments:
+          $adminChatId: '1'
+
+    BotMan\BotMan\Drivers\Tests\FakeDriver:
+        class: BotMan\BotMan\Drivers\Tests\FakeDriver
+
+    BotMan\BotMan\BotMan:
+        factory: 'BotMan\BotMan\BotManFactory:create'
+        arguments: [[]]
+        calls:
+            - method: setDriver
+              arguments: ['@BotMan\BotMan\Drivers\Tests\FakeDriver']
+            - method: setContainer
+              arguments: ['@service_container']

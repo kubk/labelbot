@@ -1,0 +1,213 @@
+
+[
+  {
+    "id": 864126276,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/:snowflake:%20Feature%20Freeze",
+    "name": ":snowflake: Feature Freeze",
+    "color": "F2F8FD",
+    "default": false
+  },
+  {
+    "id": 213374223,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Asset",
+    "name": "Asset",
+    "color": "dddddd",
+    "default": false
+  },
+  {
+    "id": 231677,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/BC%20Break",
+    "name": "BC Break",
+    "color": "e10c02",
+    "default": false
+  },
+  {
+    "id": 155233,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/BrowserKit",
+    "name": "BrowserKit",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 100079,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Bug",
+    "name": "Bug",
+    "color": "e10c02",
+    "default": false
+  },
+  {
+    "id": 313658463,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Cache",
+    "name": "Cache",
+    "color": "dddddd",
+    "default": false
+  },
+  {
+    "id": 130817,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/ClassLoader",
+    "name": "ClassLoader",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 125406,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Config",
+    "name": "Config",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 125388,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Console",
+    "name": "Console",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 18514244,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Critical",
+    "name": "Critical",
+    "color": "e10c02",
+    "default": false
+  },
+  {
+    "id": 904737,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/CssSelector",
+    "name": "CssSelector",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 107512439,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/DX",
+    "name": "DX",
+    "color": "5319e7",
+    "default": false
+  },
+  {
+    "id": 49125875,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Debug",
+    "name": "Debug",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 132466175,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/DebugBundle",
+    "name": "DebugBundle",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 99863,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/DependencyInjection",
+    "name": "DependencyInjection",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 337186922,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Deprecation",
+    "name": "Deprecation",
+    "color": "f1c40f",
+    "default": false
+  },
+  {
+    "id": 103987,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Doctrine",
+    "name": "Doctrine",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 337187703,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/DoctrineBridge",
+    "name": "DoctrineBridge",
+    "color": "dddddd",
+    "default": false
+  },
+  {
+    "id": 149840,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/DomCrawler",
+    "name": "DomCrawler",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 533127220,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Dotenv",
+    "name": "Dotenv",
+    "color": "dddddd",
+    "default": false
+  },
+  {
+    "id": 149740940,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Drupal%20related",
+    "name": "Drupal related",
+    "color": "d4c5f9",
+    "default": false
+  },
+  {
+    "id": 100084,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Enhancement",
+    "name": "Enhancement",
+    "color": "02d7e1",
+    "default": false
+  },
+  {
+    "id": 151519,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/EventDispatcher",
+    "name": "EventDispatcher",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 67789370,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/ExpressionLanguage",
+    "name": "ExpressionLanguage",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 100378,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Feature",
+    "name": "Feature",
+    "color": "02e10c",
+    "default": false
+  },
+  {
+    "id": 18832723,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Filesystem",
+    "name": "Filesystem",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 148418,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Finder",
+    "name": "Finder",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 99594,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Form",
+    "name": "Form",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 148416,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/FrameworkBundle",
+    "name": "FrameworkBundle",
+    "color": "DDDDDD",
+    "default": false
+  },
+  {
+    "id": 339255531,
+    "url": "https://api.github.com/repos/symfony/symfony/labels/Hack%20Day",
+    "name": "Hack Day",
+    "color": "207de5",
+    "default": false
+  }
+]

@@ -1,0 +1,19 @@
+services:
+    _defaults:
+        autowire: true
+
+    Redis:
+        class: \Redis
+        calls:
+            - method: connect
+              arguments: ['%env(REDIS_HOST)%', '%env(REDIS_PORT)%']
+
+    Cache\Adapter\Redis\RedisCachePool:
+        class: Cache\Adapter\Redis\RedisCachePool
+
+    Github\Client:
+        public: true
+        calls:
+            - method: addCache
+              arguments:
+                  - '@Cache\Adapter\Redis\RedisCachePool'

@@ -1,0 +1,37 @@
+hello: "%emoji% <b>Привет!</b>\nThis bot lets you subscribe to labeled events on GitHub/BitBucket issues. To begin, send a message with repository URL you want to listen.\n\nThis bot is open source - click the GitHub button to go the repository. <b>Please report all issues there.</b>"
+repository.unrecognized: 'Нераспознанный Git репозиторий'
+repository.invalid: 'Git репозиторий либо приватный, либо невалидный, либо не имеет issue трекера'
+repository.last_opened_issue: "Последнее открытое issue с лейблом <b>%label%</b> для этого репозитория\nURL: %issueUrl%"
+repository.new_labeled_event: "Новый лейбл <b>%label%</b> в репозитории %repository%\nURL: %issueUrl%"
+repository.available_labels: 'Доступные лейблы:'
+repository.go_to_issue: 'Перейти к issue'
+language.changed: 'Язык изменён на Русский'
+language.is_not_supported: 'Язык не поддерживается'
+language.all: 'Доступные языки:'
+subscription.added: "Подписка добавлена\nРепозиторий: %repositoryUrl%\nЛейбл: <b>%label%</b>"
+subscription.list_empty: 'У вас нет подписок'
+subscription.removed: 'Подписка удалена'
+subscription.not_found: 'Подписка не найдена'
+subscription.my: 'Ваши подписки'
+subscription.already_exists: 'Подписка уже существует'
+command.invalid_suggestion: 'Неправильная подсказка для команды: %suggestion%'
+command.unrecognized: 'Не могу распознать команду'
+command.all: 'Список доступных комманд: %commands%'
+suggestion.email: 'Запросить подтверждение e-mail'
+suggestion.languages: 'Выбор языка'
+suggestion.subscriptions: 'Ваши подписки'
+suggestion.notifications: 'Доступные уведомления'
+suggestion.help: Помощь
+email.confirmed: 'Email подтверждён'
+email.sent: 'Сообщение отправлено, проверьте ваш email'
+email.request_confirmation: 'Ваш email не подверждён. Используйте команду /email <ваш-email> для указания email'
+email.notification.subject: Subject
+email.notification.body: Body
+email.already_used: 'Почта занята'
+email.confirmation_requested: 'Пожалуйста перейдите по ссылке для подтверждения электронной почты: %link%'
+email.confirmation.subject: 'Подтверждение электронной почты'
+repository.no_labels: 'У репозитория нет лейблов'
+notification.enabled: 'Оповещение включено'
+notification.invalid: 'Тип оповещения не поддерживается'
+notification.disabled: 'Оповещение выключено'
+notification.all: 'Доступные типы оповещений'
