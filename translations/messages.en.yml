@@ -1,0 +1,37 @@
+hello: "%emoji% <b>Hello!</b>\nThis bot lets you subscribe to labeled events on GitHub/BitBucket issues. To begin, send a message with repository URL you want to listen.\n\nThis bot is open source - click the GitHub button to go the repository. <b>Please report all issues there.</b>"
+repository.unrecognized: 'Git repository unrecognized'
+repository.invalid: 'Git repository private or invalid or has no issue tracker'
+repository.new_labeled_event: "New label <b>%label%</b> in repository %repository%\nURL: %issueUrl%"
+repository.last_opened_issue: "The last opened issue with label <b>%label%</b> for this repository\nURL: %issueUrl%"
+repository.available_labels: 'Available labels:'
+repository.go_to_issue: 'Go to issue'
+language.changed: 'Language changed to English'
+language.is_not_supported: 'This language is not supported'
+language.all: 'Available languages:'
+subscription.added: "Subscription added\nRepository: %repositoryUrl%\nLabel: <b>%label%</b>"
+subscription.removed: 'Subscription removed'
+subscription.not_found: 'Subscription not found'
+subscription.already_exists: 'Subscription already exists'
+subscription.list_empty: 'You don''t have any subscriptions'
+subscription.my: 'Your subscriptions'
+command.unrecognized: 'Sorry, I did not understand you'
+command.all: 'List of available commands: %commands%'
+command.invalid_suggestion: 'Invalid suggestion for command'
+suggestion.email: 'Request e-mail confirmation'
+suggestion.languages: 'Select language'
+suggestion.subscriptions: 'Your subscriptions'
+suggestion.notifications: 'Available notification types'
+suggestion.help: 'This help message'
+email.confirmed: 'Email successfully confirmed'
+email.sent: 'Message sent. Please check your email'
+email.request_confirmation: 'Your email is not confirmed. Use command /email <your-email> for requesting email confirmation'
+email.notification.subject: Subject
+email.notification.body: Body
+email.already_used: 'This email is already used'
+email.confirmation_requested: 'Please click the link to confirm email: %link%'
+email.confirmation.subject: 'Email confirmation'
+repository.no_labels: 'The repository does not have any labels'
+notification.enabled: 'Notification enabled'
+notification.invalid: 'Invalid notification type'
+notification.disabled: 'Notification disabled'
+notification.all: 'Available notification types'

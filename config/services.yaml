@@ -1,0 +1,68 @@
+parameters:
+    locale: 'en'
+    polling_interval: 'PT15H'
+    available_languages: ['en', 'ru']
+    botman_config:
+      telegram: { token: '%env(TELEGRAM_BOT_API_TOKEN)%' }
+
+imports:
+  - { resource: ./packages/botman.yml }
+  - { resource: ./packages/guzzle.yml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $botName: '%env(TELEGRAM_BOT_NAME)%'
+            $adminChatId: '%env(TELEGRAM_ADMIN_CHAT_ID)%'
+            $availableLanguages: '%available_languages%'
+            $gitHostings: !tagged app.githosting
+            $notificators: !tagged app.notificator
+            $commandsWithSuggestion: !tagged app.has_suggestion
+
+    _instanceof:
+        App\Notificator\NotificatorInterface:
+            tags: [app.notificator]
+
+        App\GitHosting\GitHostingInterface:
+            tags: [app.githosting]
+
+        App\Bot\Controller\HasSuggestionInterface:
+            tags: [app.has_suggestion]
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Migrations,Kernel.php}'
+
+    App\Console\DispatchIssueEventsCommand:
+        arguments:
+            $pollingInterval: '%polling_interval%'
+
+    App\Queue\IssueLabeledConsumer:
+        tags:
+            - { name: 'enqueue.client.processor' }
+        public: true
+
+    App\Queue\IssueLabeledProducer:
+        arguments:
+            $producer: '@enqueue.producer'
+
+    App\Bot\:
+        resource: '../src/Bot/*'
+        public: true
+
+    App\Bot\WebhookProcessor:
+        tags: [controller.service_arguments]
+        public: true
+
+    App\Event\EmailConfirmationSender:
+        tags:
+            - { name: kernel.event_listener, event: App\Event\EmailConfirmationRequestedEvent, method: 'onEmailConfirmationRequested' }
+
+    App\Event\NewSubscriptionNotificator:
+        tags:
+            - { name: kernel.event_listener, event: App\Event\NewSubscriptionEvent, method: 'onNewSubscription' }
+
+
