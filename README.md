@@ -1,4 +1,4 @@
-### Labelbot
+### Labelbot [![Build Status](https://travis-ci.org/kubk/labelbot.svg?branch=master)](https://travis-ci.org/kubk/labelbot)
 
 Labelbot is a Telegram bot that allows you to subscribe to a label (for example **"good first issue"** or **"easy pick"**). Whenever an issue is tagged with the label you subscribed to, you will get a notification.
 The main purpose of this project is to make a contribution to Open Source for newcomers a little bit easier.
@@ -20,7 +20,7 @@ The main purpose of this project is to make a contribution to Open Source for ne
 
 ### Installation
 1) `git clone`
-2) `docker-compose up`
+2) `docker-compose -f docker-compose.dev.yml up`
 3) `docker exec -it labelbot_php_1 composer install`
 4) `docker exec -it labelbot_php_1 bin/console doctrine:database:create`
 5) `docker exec -it labelbot_php_1 bin/console doctrine:migrations:migrate`
