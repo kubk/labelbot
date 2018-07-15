@@ -5,8 +5,6 @@ services:
         build:
             context: ./docker/mysql
         hostname: db
-        ports:
-            - 3306:3306
         volumes:
             - mysql-tmpfs:/var/lib/mysql
         environment:
@@ -24,12 +22,8 @@ services:
         restart: always
         depends_on:
             - db
-        ports:
-            - 9000:9000
         volumes:
             - .:/app:cached
-            - ~/.vimrc:/root/.vimrc:cached
-            - ~/.bashrc:/root/.bashrc:cached
         working_dir: /app
         environment:
             APP_ENV: ${APP_ENV}
