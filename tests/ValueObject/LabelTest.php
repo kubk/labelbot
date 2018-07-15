@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Entity;
+namespace App\Tests\ValueObject;
 
-use App\Entity\Label;
+use App\ValueObject\Label;
 use PHPUnit\Framework\TestCase;
 
 class LabelTest extends TestCase

@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Notificator;
 
-use App\Entity\Label;
-use App\Entity\NotificationTransport;
-use App\Entity\Repository;
 use App\Entity\User;
 use App\Notificator\EmailNotificator;
 use App\Queue\IssueLabeledEvent;
 use App\Tests\AbstractTestCase;
+use App\ValueObject\{Label, NotificationTransport, Repository};
 
 class EmailNotificatorTest extends AbstractTestCase
 {

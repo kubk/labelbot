@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Event\{EmailConfirmationRequestedEvent, NewSubscriptionEvent};
+use App\ValueObject\{Label, NotificationTransport, Repository};
 use Doctrine\Common\Collections\{ArrayCollection, Collection};
 use Doctrine\ORM\Mapping as ORM;
 use Knp\Rad\DomainEvent\{Provider, ProviderTrait};
@@ -63,7 +64,7 @@ class User implements Provider
     /**
      * @var NotificationTransport
      *
-     * @ORM\Embedded(class="NotificationTransport")
+     * @ORM\Embedded(class="App\ValueObject\NotificationTransport")
      */
     private $notificationTransport;
 

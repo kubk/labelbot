@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Repository;
 
-use App\Entity\Label;
-use App\Entity\Repository;
 use App\Repository\SubscriptionRepository;
 use App\Repository\UserRepository;
 use App\Tests\AbstractTestCase;
+use App\ValueObject\{Label, Repository};
 
 class UserRepositoryTest extends AbstractTestCase
 {

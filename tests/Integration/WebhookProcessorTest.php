@@ -6,9 +6,9 @@ namespace App\Tests\Integration;
 
 use App\Bot\WebhookProcessor;
 use App\Entity\IssueLabeledSubscription;
-use App\Entity\NotificationTransport;
 use App\Repository\{SubscriptionRepository, UserRepository};
 use App\Tests\AbstractTestCase;
+use App\ValueObject\NotificationTransport;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Drivers\Tests\FakeDriver;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;

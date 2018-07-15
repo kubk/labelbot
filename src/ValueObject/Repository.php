@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\ValueObject;
 
 use Doctrine\ORM\Mapping as ORM;
 

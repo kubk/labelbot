@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Notificator;
 
-use App\Entity\NotificationTransport;
 use App\Entity\User;
 use App\Queue\IssueLabeledEvent;
+use App\ValueObject\NotificationTransport;
 use BotMan\BotMan\BotMan;
 use BotMan\Drivers\Telegram\Extensions\{Keyboard, KeyboardButton};
 use Psr\Log\LoggerInterface;
