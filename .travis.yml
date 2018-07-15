@@ -1,7 +1,5 @@
 sudo: required
 
-language: php
-
 services:
   - docker
 
@@ -9,6 +7,11 @@ before_install:
   - sudo rm /usr/local/bin/docker-compose
   - sudo curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
   - sudo chmod +x /usr/local/bin/docker-compose
+  # https://github.com/travis-ci/travis-ci/issues/7008
+  - sudo /etc/init.d/mysql stop
+  - docker-compose -f docker-compose.test.yml run --rm php composer install
+  - docker-compose -f docker-compose.test.yml run --rm php bin/console doctrine:database:create --env=test
+  - docker-compose -f docker-compose.test.yml run --rm php bin/console doctrine:migrations:migrate --env=test --no-interaction
 
 script:
-  - docker-compose run --rm php vendor/bin/simple-phpunit --debug
+  - docker-compose -f docker-compose.test.yml run --rm php vendor/bin/simple-phpunit --stop-on-failure

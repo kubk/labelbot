@@ -27,8 +27,11 @@ class IssueLabeledProducer
      */
     private $gitHostings;
 
-    public function __construct(ProducerInterface $producer, SubscriptionRepository $subscriptionRepository, iterable $gitHostings)
-    {
+    public function __construct(
+        ProducerInterface $producer,
+        SubscriptionRepository $subscriptionRepository,
+        iterable $gitHostings
+    ) {
         $this->producer = $producer;
         $this->subscriptionRepository = $subscriptionRepository;
         $this->gitHostings = $gitHostings;

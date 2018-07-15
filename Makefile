@@ -7,8 +7,8 @@ cs:
   $(container_php) vendor/bin/php-cs-fixer fix
 
 prepare-test-env:
-  docker-compose run --rm php bin/console doctrine:database:create --if-not-exists --env="test" && \
-  docker-compose run --rm php bin/console doctrine:migrations:migrate --env="test"
+  docker-compose -f docker-compose.dev.yml run --rm php bin/console doctrine:database:create --if-not-exists --env="test" && \
+  docker-compose -f docker-compose.dev.yml run --rm php bin/console doctrine:migrations:migrate --env="test"
 
 test:
   $(container_php) vendor/bin/simple-phpunit --stop-on-failure
