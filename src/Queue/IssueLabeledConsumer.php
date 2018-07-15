@@ -39,7 +39,7 @@ class IssueLabeledConsumer implements PsrProcessor, TopicSubscriberInterface
         $event = IssueLabeledEvent::createFromJson($message->getBody());
         $subscribedUsers = $this->userRepository->getAllSubscribedTo($event->getRepository(), $event->getLabel());
 
-        foreach($subscribedUsers as $user) {
+        foreach ($subscribedUsers as $user) {
             foreach ($this->notificators as $notificator) {
                 if (!$notificator->shouldNotify($user)) {
                     continue;
