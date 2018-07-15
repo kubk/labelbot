@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use App\Entity\{Label, Repository, User};
+use App\Entity\User;
+use App\ValueObject\{Label, Repository};
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 

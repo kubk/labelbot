@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\GitHosting;
 
-use App\Entity\Label;
-use App\Entity\Repository;
 use App\Queue\IssueLabeledEvent;
+use App\ValueObject\{Label, Repository};
 
 /**
  * Interface for different Git hostings such as GitHub, BitBucket or GitLab.

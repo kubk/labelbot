@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Event;
 
-use App\Entity\{Label, Repository};
+use App\ValueObject\{Label, Repository};
 use Knp\Rad\DomainEvent\Event;
 
 class NewSubscriptionEvent extends Event

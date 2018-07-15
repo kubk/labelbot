@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Notificator;
 
-use App\Entity\NotificationTransport;
 use App\Entity\User;
 use App\Queue\IssueLabeledEvent;
+use App\ValueObject\NotificationTransport;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class EmailNotificator implements NotificatorInterface

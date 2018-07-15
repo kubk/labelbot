@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\GitHosting;
 
-use App\Entity\Label;
-use App\Entity\Repository;
 use App\GitHosting\BitBucket;
 use App\Tests\GuzzleMockFactory;
+use App\ValueObject\{Label, Repository};
 use Carbon\Carbon;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
