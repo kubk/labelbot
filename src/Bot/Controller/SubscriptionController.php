@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Bot\Controller;
 
-use App\Entity\{
-    IssueLabeledSubscription, Label, Repository, User
-};
+use App\Entity\{IssueLabeledSubscription, User};
 use App\GitHosting\GitHostingInterface;
 use App\Repository\SubscriptionRepository;
+use App\ValueObject\{Label, Repository};
 use BotMan\BotMan\BotMan;
 use BotMan\Drivers\Telegram\Extensions\{Keyboard, KeyboardButton};
 use Symfony\Component\Translation\TranslatorInterface;

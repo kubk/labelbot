@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\GitHosting;
 
-use App\Entity\Label;
-use App\Entity\Repository;
 use App\Queue\IssueLabeledEvent;
+use App\ValueObject\{Label, Repository};
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;

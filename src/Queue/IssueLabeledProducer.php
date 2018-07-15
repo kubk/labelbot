@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Queue;
 
-use App\Entity\Repository;
 use App\GitHosting\GitHostingInterface;
 use App\Repository\SubscriptionRepository;
+use App\ValueObject\Repository;
 use Enqueue\Client\ProducerInterface;
 use phootwork\json\Json;
 
