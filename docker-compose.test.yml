@@ -36,7 +36,9 @@ services:
             APP_SECRET: ${APP_SECRET}
             MAILER_URL: ${MAILER_URL}
             ENQUEUE_DSN: ${ENQUEUE_DSN}
+            TELEGRAM_ADMIN_CHAT_ID: '1'
             TELEGRAM_BOT_NAME: 'labelbot'
+            TELEGRAM_BOT_API_TOKEN: 'token'
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             MYSQL_DBNAME: ${MYSQL_DBNAME}
