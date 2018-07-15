@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Queue;
 
-use App\Entity\Label;
-use App\Entity\Repository;
 use App\Notificator\TelegramNotificator;
 use App\Queue\IssueLabeledConsumer;
 use App\Queue\IssueLabeledEvent;
 use App\Repository\UserRepository;
 use App\Tests\AbstractTestCase;
+use App\ValueObject\{Label, Repository};
 use Enqueue\Util\JSON;
 use Interop\Queue\PsrContext;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Bot\Controller;
 
-use App\Entity\NotificationTransport;
 use App\Entity\User;
+use App\ValueObject\NotificationTransport;
 use BotMan\BotMan\BotMan;
 use BotMan\Drivers\Telegram\Extensions\{Keyboard, KeyboardButton};
 use Spatie\Emoji\Emoji;
