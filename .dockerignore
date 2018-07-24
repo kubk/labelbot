@@ -1,0 +1,12 @@
+# Symfony
+var/cache
+var/sessions
+var/logs
+public/bundles
+
+# Composer
+vendor
+
+# App
+var/database
+var/data/rabbitmq
