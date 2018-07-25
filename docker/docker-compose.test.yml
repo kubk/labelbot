@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+    db:
+        container_name: labelbot_db
+        image: mysql:5.7.22
+        hostname: db
+        volumes:
+            - mysql-tmpfs:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD:
+            MYSQL_USER: user
+            MYSQL_PASSWORD:
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+
+    php:
+        container_name: labelbot_php
+        build:
+            context: php
+            args:
+                APP_ENV: test
+        hostname: php
+        restart: always
+        depends_on:
+            - db
+        volumes:
+            - ..:/app:cached
+        working_dir: /app
+        environment:
+            APP_ENV: test
+            APP_SECRET: secret
+            MAILER_URL: null://localhost
+            ENQUEUE_DSN: null://
+            TELEGRAM_ADMIN_CHAT_ID: '1'
+            TELEGRAM_BOT_NAME: 'labelbot'
+            TELEGRAM_BOT_API_TOKEN: 'token'
+            MYSQL_USER: user
+            MYSQL_PASSWORD:
+            MYSQL_DBNAME: labelbot_test
+            MYSQL_HOST: db
+
+volumes:
+    mysql-tmpfs:
+        driver: local
+        driver_opts:
+            device: tmpfs
+            type: tmpfs
+            o: size=1024m

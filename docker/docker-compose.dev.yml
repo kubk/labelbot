@@ -2,21 +2,22 @@ version: '3'
 
 services:
     db:
-        build:
-            context: ./docker/mysql
+        container_name: labelbot_db
+        image: mysql:5.7.22
         hostname: db
         ports:
             - 3306:3306
         volumes:
-            - ./var/database:/var/lib/mysql
+            - ../var/database:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
     php:
+        container_name: labelbot_php
         build:
-            context: ./docker/php
+            context: php
             args:
                 APP_ENV: ${APP_ENV}
         hostname: php
@@ -26,7 +27,7 @@ services:
         ports:
             - 9000:9000
         volumes:
-            - .:/app:cached
+            - ../:/app:cached
             - ~/.vimrc:/root/.vimrc:cached
             - ~/.bashrc:/root/.bashrc:cached
         working_dir: /app
@@ -53,8 +54,8 @@ services:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 
     nginx:
-        build:
-            context: ./docker/nginx
+        container_name: labelbot_nginx
+        image: nginx:1.13.8
         hostname: nginx
         depends_on:
             - db
@@ -62,16 +63,19 @@ services:
         ports:
             - 80:80
         volumes:
-            - .:/app:cached
+            - ..:/app:cached
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
 
     rabbitmq:
+        container_name: labelbot_rabbitmq
         image: rabbitmq:3.7.5-management
         hostname: app-rabbitmq
         ports:
             - 5672:5672
             - 15672:15672
         volumes:
-            - ./var/data/rabbitmq:/var/lib/rabbitmq/mnesia/rabbit@app-rabbitmq:cached
+            - ../var/data/rabbitmq:/var/lib/rabbitmq/mnesia/rabbit@app-rabbitmq:cached
         environment:
             RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_ERLANG_COOKIE}
             RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
@@ -79,7 +83,8 @@ services:
             RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_DEFAULT_VHOST}
 
     redis:
-      image: redis:3.0
-      hostname: redis
-      ports:
-        - 6379:6379
+        container_name: labelbot_redis
+        image: redis:3.0
+        hostname: redis
+        ports:
+          - 6379:6379
