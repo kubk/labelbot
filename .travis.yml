@@ -7,9 +7,9 @@ before_install:
   - sudo rm /usr/local/bin/docker-compose
   - sudo curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
   - sudo chmod +x /usr/local/bin/docker-compose
-  - docker-compose -f docker-compose.test.yml run --rm php composer install
-  - docker-compose -f docker-compose.test.yml run --rm php bin/console doctrine:database:create --env=test
-  - docker-compose -f docker-compose.test.yml run --rm php bin/console doctrine:migrations:migrate --env=test --no-interaction
+  - docker-compose -f docker/docker-compose.test.yml run --rm php composer install
+  - docker-compose -f docker/docker-compose.test.yml run --rm php bin/console doctrine:database:create --env=test
+  - docker-compose -f docker/docker-compose.test.yml run --rm php bin/console doctrine:migrations:migrate --env=test --no-interaction
 
 script:
-  - docker-compose -f docker-compose.test.yml run --rm php vendor/bin/simple-phpunit --stop-on-failure
+  - docker-compose -f docker/docker-compose.test.yml run --rm php vendor/bin/simple-phpunit --stop-on-failure

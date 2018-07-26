@@ -20,10 +20,10 @@ The main purpose of this project is to make a contribution to Open Source for ne
 
 ### Installation
 1) `git clone`
-2) `docker-compose -f docker-compose.dev.yml up`
-3) `docker exec -it labelbot_php_1 composer install`
-4) `docker exec -it labelbot_php_1 bin/console doctrine:database:create`
-5) `docker exec -it labelbot_php_1 bin/console doctrine:migrations:migrate`
+2) `docker-compose -f docker/docker-compose.dev.yml up`
+3) `docker exec -it labelbot_php composer install`
+4) `docker exec -it labelbot_php bin/console doctrine:database:create`
+5) `docker exec -it labelbot_php bin/console doctrine:migrations:migrate`
 
 #### Configure Telegram webhook
 The easiest way is to use Ngrok:

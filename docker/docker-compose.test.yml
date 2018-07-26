@@ -3,7 +3,7 @@ version: '3'
 services:
     db:
         build:
-            context: ./docker/mysql
+            context: mysql
         hostname: db
         volumes:
             - mysql-tmpfs:/var/lib/mysql
@@ -15,7 +15,7 @@ services:
 
     php:
         build:
-            context: ./docker/php
+            context: php
             args:
                 APP_ENV: ${APP_ENV}
         hostname: php
@@ -23,7 +23,7 @@ services:
         depends_on:
             - db
         volumes:
-            - .:/app:cached
+            - ..:/app:cached
         working_dir: /app
         environment:
             APP_ENV: ${APP_ENV}
