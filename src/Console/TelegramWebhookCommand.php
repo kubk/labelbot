@@ -59,7 +59,7 @@ class TelegramWebhookCommand extends Command
     {
         if ($input->getOption('delete')) {
             $url = "https://api.telegram.org/bot{$this->telegramBotApiToken}/setWebhook";
-        } else if ($input->getOption('url')) {
+        } elseif ($input->getOption('url')) {
             $url = "https://api.telegram.org/bot{$this->telegramBotApiToken}/setWebhook?url={$input->getOption('url')}";
         } else {
             $help = new HelpCommand();

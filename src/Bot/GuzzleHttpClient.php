@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Bot;
 
 use BotMan\BotMan\Interfaces\HttpInterface;
@@ -22,7 +24,7 @@ class GuzzleHttpClient implements HttpInterface
     private $client;
 
     /**
-     * Converts PSR-7 response to HttpFoundation response
+     * Converts PSR-7 response to HttpFoundation response.
      *
      * @var HttpFoundationFactory
      */
@@ -46,7 +48,7 @@ class GuzzleHttpClient implements HttpInterface
         $psrResponse = $this->client->get($url, [
             'headers' => $headers,
             'http_errors' => false,
-            'query' => $urlParameters
+            'query' => $urlParameters,
         ]);
 
         return $this->factory->createResponse($psrResponse);
@@ -65,7 +67,7 @@ class GuzzleHttpClient implements HttpInterface
         $options = [
             'headers' => $headers,
             'http_errors' => false,
-            'query' => $urlParameters
+            'query' => $urlParameters,
         ];
 
         $postKey = $asJSON ? 'json' : 'form_params';
