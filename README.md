@@ -29,9 +29,9 @@ The main purpose of this project is to make a contribution to Open Source for ne
 The easiest way is to use Ngrok:
 
 1) `ngrok http 80`
-2) `bin/webhook.sh <ngrok_url_with_https>`
+2) `bin/console app:webhook --url=<ngrok_url_with_https>`
 
-To delete webhook use `bin/webhook.sh`
+To delete webhook use `bin/console app:webhook --delete`
 
 #### Testing
 1) `make prepare-test-env`
