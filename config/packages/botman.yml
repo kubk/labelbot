@@ -1,3 +1,7 @@
+parameters:
+    botman_config:
+        telegram: { token: '%env(TELEGRAM_BOT_API_TOKEN)%' }
+
 services:
     _defaults:
         autowire: true
@@ -5,18 +9,18 @@ services:
     BotMan\BotMan\BotManFactory:
         class: BotMan\BotMan\BotManFactory
 
-    BotMan\BotMan\Http\Curl:
-        class: BotMan\BotMan\Http\Curl
+    BotMan\BotMan\Interfaces\HttpInterface:
+        class: App\Bot\GuzzleHttpClient
 
-    BotMan\BotMan\Drivers\DriverManager:
-        arguments: ['%botman_config%', '@BotMan\BotMan\Http\Curl']
-        calls:
-            - method: loadDriver
-              arguments: ['BotMan\Drivers\Telegram\TelegramDriver']
+    app.request:
+        class: Symfony\Component\HttpFoundation\RequestStack
+        factory: ['@request_stack', getCurrentRequest]
 
     BotMan\Drivers\Telegram\TelegramDriver:
-        factory: 'BotMan\BotMan\Drivers\DriverManager:loadFromName'
-        arguments: ['BotMan\Drivers\Telegram\TelegramDriver', '%botman_config%']
+        class: BotMan\Drivers\Telegram\TelegramDriver
+        arguments:
+            $request: '@app.request'
+            $config: '%botman_config%'
 
     BotMan\BotMan\BotMan:
         factory: 'BotMan\BotMan\BotManFactory:create'
