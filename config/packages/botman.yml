@@ -5,11 +5,11 @@ services:
     BotMan\BotMan\BotManFactory:
         class: BotMan\BotMan\BotManFactory
 
-    BotMan\BotMan\Http\Curl:
+    BotMan\BotMan\Interfaces\HttpInterface:
         class: BotMan\BotMan\Http\Curl
 
     BotMan\BotMan\Drivers\DriverManager:
-        arguments: ['%botman_config%', '@BotMan\BotMan\Http\Curl']
+        arguments: ['%botman_config%', '@BotMan\BotMan\Interfaces\HttpInterface']
         calls:
             - method: loadDriver
               arguments: ['BotMan\Drivers\Telegram\TelegramDriver']

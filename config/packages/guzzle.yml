@@ -1,6 +1,14 @@
+parameters:
+    proxy: '%env(GUZZLE_PROXY)%'
+
 services:
     _defaults:
         autowire: true
 
     GuzzleHttp\Client:
         class: GuzzleHttp\Client
+        arguments:
+            -
+              timeout: 10
+              curl:
+                !php/const CURLOPT_PROXY: '%proxy%'

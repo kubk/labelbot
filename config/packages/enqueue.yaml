@@ -2,3 +2,6 @@ enqueue:
     transport:
         default: 'amqp:'
     client: ~
+
+services:
+    Enqueue\Client\ProducerInterface: '@enqueue.producer'
