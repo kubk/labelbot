@@ -23,7 +23,7 @@ class GuzzleHttpClient implements HttpInterface
     private $client;
 
     /**
-     * Converts PSR-7 response to HttpFoundation response
+     * Converts PSR-7 response to HttpFoundation response.
      *
      * @var HttpFoundationFactory
      */
