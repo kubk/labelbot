@@ -2,22 +2,21 @@ version: '3'
 
 services:
     db:
-        build:
-            context: mysql
+        image: mysql:5.7.22
+        container_name: labelbot_db
         hostname: db
         volumes:
             - mysql-tmpfs:/var/lib/mysql
         environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-            MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+            MYSQL_ROOT_PASSWORD: rootpwd
+            MYSQL_DATABASE: labelbot_test
 
     php:
+        container_name: labelbot_php
         build:
             context: php
             args:
-                APP_ENV: ${APP_ENV}
+                APP_ENV: test
         hostname: php
         restart: always
         depends_on:
@@ -26,18 +25,17 @@ services:
             - ..:/app:cached
         working_dir: /app
         environment:
-            APP_ENV: ${APP_ENV}
-            APP_SECRET: ${APP_SECRET}
+            APP_ENV: test
+            APP_SECRET: secret
             MAILER_URL: ${MAILER_URL}
             ENQUEUE_DSN: ${ENQUEUE_DSN}
             TELEGRAM_ADMIN_CHAT_ID: '1'
             TELEGRAM_BOT_NAME: 'labelbot'
             TELEGRAM_BOT_API_TOKEN: 'token'
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-            MYSQL_DBNAME: ${MYSQL_DBNAME}
-            MYSQL_DBNAME_TEST: ${MYSQL_DBNAME_TEST}
-            MYSQL_HOST: ${MYSQL_HOST}
+            MYSQL_USER: root
+            MYSQL_PASSWORD: rootpwd
+            MYSQL_DBNAME: labelbot_test
+            MYSQL_HOST: db
 
 volumes:
     mysql-tmpfs:
