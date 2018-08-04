@@ -3,11 +3,12 @@ parameters:
     polling_interval: 'PT15H'
     available_languages: ['en', 'ru']
     botman_config:
-      telegram: { token: '%env(TELEGRAM_BOT_API_TOKEN)%' }
+        telegram: { token: '%env(TELEGRAM_BOT_API_TOKEN)%' }
 
 imports:
   - { resource: ./packages/botman.yml }
   - { resource: ./packages/guzzle.yml }
+  - { resource: ./packages/http_foundation_factory.yml }
 
 services:
     _defaults:
@@ -45,9 +46,10 @@ services:
             - { name: 'enqueue.client.processor' }
         public: true
 
-    App\Queue\IssueLabeledProducer:
+    App\Console\TelegramWebhookCommand:
+        class: App\Console\TelegramWebhookCommand
         arguments:
-            $producer: '@enqueue.producer'
+            $telegramBotApiToken: '%env(TELEGRAM_BOT_API_TOKEN)%'
 
     App\Bot\:
         resource: '../src/Bot/*'
