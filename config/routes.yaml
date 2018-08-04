@@ -1,7 +1,7 @@
 index:
     path: /
     controller: App\Bot\WebhookProcessor::handleTelegramRequest
-    methods: [GET]
+    methods: [GET, POST]
 
 email_confirm:
     path: /email/confirm/{confirmationToken}
