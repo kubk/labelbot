@@ -1,0 +1,3 @@
+services:
+    Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory:
+        class: Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory
