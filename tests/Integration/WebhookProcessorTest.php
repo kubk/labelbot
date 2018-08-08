@@ -44,7 +44,7 @@ class WebhookProcessorTest extends AbstractTestCase
 
     public function testUserCanStartConversation(): void
     {
-        $userId = '1';
+        $userId='1';
         $outgoingMessage = $this->sendMessageToBot('/start', $userId);
         $this->assertNotEmpty($outgoingMessage->getText());
     }

@@ -1,4 +1,0 @@
-services:
-  phpcsfixer:
-    version: 2
-    config_path: .php_cs
