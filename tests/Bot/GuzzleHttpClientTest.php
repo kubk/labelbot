@@ -6,7 +6,6 @@ namespace App\Tests\Bot;
 
 use App\Bot\GuzzleHttpClient;
 use App\Tests\GuzzleMockFactory;
-use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 
