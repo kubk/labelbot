@@ -179,6 +179,9 @@
     "jean85/pretty-package-versions": {
         "version": "1.2"
     },
+    "kevinrob/guzzle-cache-middleware": {
+        "version": "v3.2.1"
+    },
     "knplabs/github-api": {
         "version": "2.6",
         "recipe": {
