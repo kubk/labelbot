@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
+use Doctrine\Common\Cache\FilesystemCache;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 use Http\Promise\FulfilledPromise;
+use Kevinrob\GuzzleCache\CacheMiddleware;
+use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
+use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -15,6 +19,23 @@ use Psr\Http\Message\RequestInterface;
  */
 class GuzzleMockFactory
 {
+    public function createCacheable(): Client
+    {
+        $stack = HandlerStack::create();
+        $middleware = new CacheMiddleware(
+            new GreedyCacheStrategy(
+                new DoctrineCacheStorage(
+                    new FilesystemCache(__DIR__ . '/Cache')
+                ),
+                60 * 60 * 24 * 365 * 30
+            )
+        );
+        $middleware->setHttpMethods(['GET' => true, 'POST' => true]);
+        $stack->push($middleware, 'cache');
+
+        return new Client(['handler' => $stack]);
+    }
+
     public function createAdapter(array $requestResponseMap): GuzzleAdapter
     {
         $handlerStack = $this->createHandlerStack($requestResponseMap);
