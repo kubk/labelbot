@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\GitHosting;
 
+use App\Entity\{Label, Repository};
 use App\GitHosting\GitHub;
 use App\Tests\GuzzleMockFactory;
-use App\ValueObject\{Label, Repository};
 use Carbon\Carbon;
 use Github\Client;
 use Github\HttpClient\Builder;

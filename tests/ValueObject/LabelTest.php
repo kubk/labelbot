@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\ValueObject;
 
-use App\ValueObject\Label;
+use App\Entity\Label;
 use PHPUnit\Framework\TestCase;
 
 class LabelTest extends TestCase

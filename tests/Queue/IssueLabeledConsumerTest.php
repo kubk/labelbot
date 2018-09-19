@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Queue;
 
+use App\Entity\{Label, Repository};
 use App\Notificator\TelegramNotificator;
 use App\Queue\IssueLabeledConsumer;
 use App\Queue\IssueLabeledEvent;
 use App\Repository\UserRepository;
 use App\Tests\AbstractTestCase;
-use App\ValueObject\{Label, Repository};
 use Enqueue\Util\JSON;
 use Interop\Queue\PsrContext;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
@@ -25,7 +25,7 @@ class IssueLabeledConsumerTest extends AbstractTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->userRepository = $this->container->get(UserRepository::class);
+        $this->userRepository = self::$container->get(UserRepository::class);
     }
 
     /**
@@ -49,7 +49,7 @@ class IssueLabeledConsumerTest extends AbstractTestCase
         $issueLabeledConsumer = new IssueLabeledConsumer($this->userRepository, new NullLogger(), [$telegramNotificatorMock]);
 
         /** @var PsrContext $context */
-        $context = $this->container->get('enqueue.events.context');
+        $context = self::$container->get('enqueue.events.context');
         $issueLabeledEvent = new IssueLabeledEvent(
             $repository,
             $label,

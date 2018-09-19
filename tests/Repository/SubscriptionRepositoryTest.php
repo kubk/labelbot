@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Repository;
 
 use App\Entity\IssueLabeledSubscription;
+use App\Entity\{Label, Repository};
 use App\Repository\SubscriptionRepository;
 use App\Repository\UserRepository;
 use App\Tests\AbstractTestCase;
-use App\ValueObject\{Label, Repository};
 
 class SubscriptionRepositoryTest extends AbstractTestCase
 {
@@ -25,8 +25,8 @@ class SubscriptionRepositoryTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->subscriptionRepository = $this->container->get(SubscriptionRepository::class);
-        $this->userRepository = $this->container->get(UserRepository::class);
+        $this->subscriptionRepository = self::$container->get(SubscriptionRepository::class);
+        $this->userRepository = self::$container->get(UserRepository::class);
     }
 
     public function testGetSubscription(): void

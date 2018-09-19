@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Enum\LanguageEnum;
+use App\Enum\NotificationTransportEnum;
 use App\Event\{EmailConfirmationRequestedEvent, NewSubscriptionEvent};
-use App\ValueObject\{Label, NotificationTransport, Repository};
 use Doctrine\Common\Collections\{ArrayCollection, Collection};
 use Doctrine\ORM\Mapping as ORM;
 use Knp\Rad\DomainEvent\{Provider, ProviderTrait};
@@ -62,9 +63,9 @@ class User implements Provider
     private $confirmationToken;
 
     /**
-     * @var NotificationTransport
+     * @var string
      *
-     * @ORM\Embedded(class="App\ValueObject\NotificationTransport")
+     * @ORM\Column(type="string")
      */
     private $notificationTransport;
 
@@ -80,8 +81,8 @@ class User implements Provider
         $this->id = Uuid::uuid4();
         $this->telegramId = $telegramId;
         $this->subscriptions = new ArrayCollection();
-        $this->notificationTransport = NotificationTransport::telegram();
-        $this->language = 'en';
+        $this->notificationTransport = NotificationTransportEnum::TELEGRAM;
+        $this->language = LanguageEnum::EN;
     }
 
     public function requestEmailConfirmation(string $email): void
@@ -96,7 +97,7 @@ class User implements Provider
     public function confirmEmail(): void
     {
         if (!$this->unconfirmedEmail) {
-            throw new \LogicException('User must request email before confirmation');
+            throw new \DomainException('User must request email before confirmation');
         }
 
         $this->email = $this->unconfirmedEmail;
@@ -117,19 +118,19 @@ class User implements Provider
         $subscription->removeUser();
     }
 
-    public function switchLanguage(string $language): void
+    public function setLanguage(string $language): void
     {
         $this->language = $language;
     }
 
-    public function enableTransport(NotificationTransport $notificationTransport): void
+    public function setNotificationTransport(string $notificationTransport): void
     {
         $this->notificationTransport = $notificationTransport;
     }
 
-    public function isTransportEnabled(NotificationTransport $notificationTransport): bool
+    public function getNotificationTransport(): string
     {
-        return $this->notificationTransport->equals($notificationTransport);
+        return $this->notificationTransport;
     }
 
     public function isEmailConfirmed(): bool

@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\Notificator;
 
 use App\Entity\User;
+use App\Entity\{Label, Repository};
+use App\Enum\NotificationTransportEnum;
 use App\Notificator\TelegramNotificator;
 use App\Queue\IssueLabeledEvent;
 use App\Tests\AbstractTestCase;
-use App\ValueObject\{Label, NotificationTransport, Repository};
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\Tests\FakeDriver;
 use Psr\Log\NullLogger;
@@ -34,7 +35,7 @@ class TelegramNotificatorTest extends AbstractTestCase
 
         $this->telegramNotificator = new TelegramNotificator(
             $bot,
-            $this->container->get('translator'),
+            self::$container->get('translator'),
             new NullLogger()
         );
     }
@@ -42,7 +43,7 @@ class TelegramNotificatorTest extends AbstractTestCase
     public function testItDoesNotSendNotificationWhenTelegramTransportIsNotEnabled(): void
     {
         $user = new User('1');
-        $user->enableTransport(NotificationTransport::email());
+        $user->setNotificationTransport(NotificationTransportEnum::EMAIL);
         $this->assertFalse($this->telegramNotificator->shouldNotify($user));
     }
 

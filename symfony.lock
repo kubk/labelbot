@@ -203,6 +203,9 @@
     "muglug/package-versions-56": {
         "version": "1.2.4"
     },
+    "myclabs/php-enum": {
+        "version": "1.6.2"
+    },
     "nesbot/carbon": {
         "version": "1.32.0"
     },

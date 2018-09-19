@@ -17,6 +17,12 @@
         <env name="SHELL_VERBOSITY" value="-1" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
         <env name="SENTRY_DSN" value=""/>
+        <env name="MYSQL_USER" value="root"/>
+        <env name="MYSQL_PASSWORD" value="j"/>
+        <env name="MYSQL_HOST" value="127.0.0.1"/>
+        <env name="TELEGRAM_BOT_NAME" value="botname"/>
+        <env name="TELEGRAM_ADMIN_CHAT_ID" value="1"/>
+        <env name="MYSQL_DBNAME" value="labelbot_test"/>
     </php>
 
     <testsuites>

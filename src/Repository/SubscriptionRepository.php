@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\{IssueLabeledSubscription, User};
-use App\ValueObject\{Label, Repository};
+use App\Entity\{Label, Repository};
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -35,7 +35,7 @@ class SubscriptionRepository extends ServiceEntityRepository
     {
         return $this->getEntityManager()
             ->createQueryBuilder()
-            ->select('NEW ValueObject:Repository(s.repository.url)')
+            ->select('NEW App:Repository(s.repository.url)')
             ->distinct()
             ->from(IssueLabeledSubscription::class, 's')
             ->getQuery()
