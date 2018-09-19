@@ -7,7 +7,6 @@ namespace App\Tests;
 use App\DataFixtures\AppFixture;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\DependencyInjection\Container;
 
 abstract class AbstractTestCase extends KernelTestCase
 {
