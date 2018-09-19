@@ -16,16 +16,10 @@ abstract class AbstractTestCase extends KernelTestCase
      */
     protected $entityManager;
 
-    /**
-     * @var Container
-     */
-    protected $container;
-
     protected function setUp(): void
     {
-        $kernel = self::bootKernel();
-        $this->container = $kernel->getContainer();
-        $this->entityManager = $this->container->get('doctrine')->getManager();
+        self::bootKernel();
+        $this->entityManager = self::$container->get('doctrine')->getManager();
         $this->entityManager->beginTransaction();
     }
 

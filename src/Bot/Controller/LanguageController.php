@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Bot\Controller;
 
 use App\Entity\User;
+use App\Enum\LanguageEnum;
 use BotMan\BotMan\BotMan;
 use BotMan\Drivers\Telegram\Extensions\{Keyboard, KeyboardButton};
 use Spatie\Emoji\Emoji;
@@ -17,15 +18,9 @@ class LanguageController implements HasSuggestionInterface
      */
     private $translator;
 
-    /**
-     * @var array
-     */
-    private $availableLanguages;
-
-    public function __construct(TranslatorInterface $translator, array $availableLanguages)
+    public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
-        $this->availableLanguages = $availableLanguages;
     }
 
     public function showLanguageKeyboard(BotMan $bot): void
@@ -44,14 +39,14 @@ class LanguageController implements HasSuggestionInterface
 
     public function switchLanguage(BotMan $bot, string $language): void
     {
-        if (!in_array($language, $this->availableLanguages, true)) {
+        if (!in_array($language, LanguageEnum::toArray(), true)) {
             $bot->reply($this->translator->trans('language.is_not_supported'));
             return;
         }
 
         /** @var User $user */
         $user = $bot->getMessage()->getExtras('user');
-        $user->switchLanguage($language);
+        $user->setLanguage($language);
 
         $bot->reply($this->translator->trans('language.changed', [], null, $user->getLanguage()));
     }

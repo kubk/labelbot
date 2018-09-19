@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Queue;
 
-use App\ValueObject\{Label, Repository};
+use App\Entity\{Label, Repository};
 use phootwork\json\Json;
 
 class IssueLabeledEvent implements \JsonSerializable

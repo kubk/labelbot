@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Queue;
 
+use App\Entity\Repository;
 use App\Queue\IssueLabeledProducer;
 use App\Repository\SubscriptionRepository;
 use App\Tests\AbstractTestCase;
 use App\Tests\Integration\GitHubMock;
-use App\ValueObject\Repository;
 use Enqueue\Client\ProducerInterface;
 use Enqueue\Client\TraceableProducer;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
@@ -23,7 +23,7 @@ class IssueLabeledProducerTest extends AbstractTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->traceableProducer = new TraceableProducer($this->container->get(ProducerInterface::class));
+        $this->traceableProducer = new TraceableProducer(self::$container->get(ProducerInterface::class));
     }
 
     public function testHandlingGithubLabeledEvents(): void

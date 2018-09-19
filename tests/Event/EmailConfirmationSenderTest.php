@@ -24,13 +24,13 @@ class EmailConfirmationSenderTest extends AbstractTestCase
     {
         parent::setUp();
 
-        $mailer = $this->container->get('mailer');
+        $mailer = self::$container->get('mailer');
         $this->messageLogger = new \Swift_Plugins_MessageLogger();
         $mailer->registerPlugin($this->messageLogger);
 
         $this->emailConfirmationSender = new EmailConfirmationSender(
-            $this->container->get('router'),
-            $this->container->get('translator'),
+            self::$container->get('router'),
+            self::$container->get('translator'),
             $mailer
         );
     }

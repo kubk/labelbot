@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration;
 
+use App\Entity\{Label, Repository};
 use App\GitHosting\GitHostingInterface;
 use App\Queue\IssueLabeledEvent;
-use App\ValueObject\{Label, Repository};
 
 class GitHubMock implements GitHostingInterface
 {

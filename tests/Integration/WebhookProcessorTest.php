@@ -6,9 +6,9 @@ namespace App\Tests\Integration;
 
 use App\Bot\WebhookProcessor;
 use App\Entity\IssueLabeledSubscription;
+use App\Enum\NotificationTransportEnum;
 use App\Repository\{SubscriptionRepository, UserRepository};
 use App\Tests\AbstractTestCase;
-use App\ValueObject\NotificationTransport;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Drivers\Tests\FakeDriver;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
@@ -35,11 +35,11 @@ class WebhookProcessorTest extends AbstractTestCase
     {
         parent::setUp();
 
-        $this->userRepository = $this->container->get(UserRepository::class);
-        $this->subscriptionRepository = $this->container->get(SubscriptionRepository::class);
+        $this->userRepository = self::$container->get(UserRepository::class);
+        $this->subscriptionRepository = self::$container->get(SubscriptionRepository::class);
 
         $this->messageLogger = new \Swift_Plugins_MessageLogger();
-        $this->container->get('mailer')->registerPlugin($this->messageLogger);
+        self::$container->get('mailer')->registerPlugin($this->messageLogger);
     }
 
     public function testUserCanStartConversation(): void
@@ -216,14 +216,12 @@ class WebhookProcessorTest extends AbstractTestCase
         $this->loadFixtures();
         $userId = '1';
         $user = $this->userRepository->findByTelegramId($userId);
-        $this->assertTrue($user->isTransportEnabled(NotificationTransport::telegram()));
-        $this->assertFalse($user->isTransportEnabled(NotificationTransport::email()));
+        $this->assertEquals(NotificationTransportEnum::TELEGRAM, $user->getNotificationTransport());
 
         $this->sendMessageToBot('/notification email', $userId);
 
         $user = $this->userRepository->findByTelegramId($userId);
-        $this->assertTrue($user->isTransportEnabled(NotificationTransport::email()));
-        $this->assertFalse($user->isTransportEnabled(NotificationTransport::telegram()));
+        $this->assertEquals(NotificationTransportEnum::EMAIL, $user->getNotificationTransport());
     }
 
     public function adminReceivesNotificationsAboutNewSubscriptions(): void
@@ -254,11 +252,11 @@ class WebhookProcessorTest extends AbstractTestCase
         $driver = new FakeDriver();
         $driver->messages = [new IncomingMessage($text, $userId, $recipient = null)];
         /** @var BotMan $bot */
-        $bot = $this->container->get(BotMan::class);
+        $bot = self::$container->get(BotMan::class);
         $bot->setDriver($driver);
 
         /** @var WebhookProcessor $webhookProcessor */
-        $webhookProcessor = $this->container->get(WebhookProcessor::class);
+        $webhookProcessor = self::$container->get(WebhookProcessor::class);
         $webhookProcessor->handleTelegramRequest($bot);
 
         $message = $driver->getBotMessages()[0] ?? null;

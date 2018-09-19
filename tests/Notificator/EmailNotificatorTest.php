@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\Notificator;
 
 use App\Entity\User;
+use App\Entity\{Label, Repository};
+use App\Enum\NotificationTransportEnum;
 use App\Notificator\EmailNotificator;
 use App\Queue\IssueLabeledEvent;
 use App\Tests\AbstractTestCase;
-use App\ValueObject\{Label, NotificationTransport, Repository};
 
 class EmailNotificatorTest extends AbstractTestCase
 {
@@ -26,17 +27,17 @@ class EmailNotificatorTest extends AbstractTestCase
     {
         parent::setUp();
         $this->messageLogger = new \Swift_Plugins_MessageLogger();
-        $mailer = $this->container->get('mailer');
+        $mailer = self::$container->get('mailer');
         $mailer->registerPlugin($this->messageLogger);
 
-        $translator = $this->container->get('translator');
+        $translator = self::$container->get('translator');
         $this->emailNotificator = new EmailNotificator($mailer, $translator);
     }
 
     public function testItDoesNotSendEmailWhenUserIsNotConfirmed(): void
     {
         $unconfirmedUser = new User('2');
-        $unconfirmedUser->enableTransport(NotificationTransport::email());
+        $unconfirmedUser->setNotificationTransport(NotificationTransportEnum::EMAIL);
         $unconfirmedUser->requestEmailConfirmation('test2@email.com');
         $this->assertFalse($this->emailNotificator->shouldNotify($unconfirmedUser));
     }
@@ -49,7 +50,7 @@ class EmailNotificatorTest extends AbstractTestCase
             'https://github.com/symfony/symfony/issues/2'
         );
         $user = new User('2');
-        $user->enableTransport(NotificationTransport::email());
+        $user->setNotificationTransport(NotificationTransportEnum::EMAIL);
         $user->requestEmailConfirmation('test@email.com');
         $user->confirmEmail();
 

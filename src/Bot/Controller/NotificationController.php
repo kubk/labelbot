@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Bot\Controller;
 
 use App\Entity\User;
-use App\ValueObject\NotificationTransport;
+use App\Enum\NotificationTransportEnum;
 use BotMan\BotMan\BotMan;
 use BotMan\Drivers\Telegram\Extensions\{Keyboard, KeyboardButton};
 use Spatie\Emoji\Emoji;
@@ -40,14 +40,19 @@ class NotificationController implements HasSuggestionInterface
 
     public function enable(BotMan $bot, string $notificationTransport): void
     {
+        if (!in_array($notificationTransport, NotificationTransportEnum::toArray(), true)) {
+            $bot->reply('Invalid notification transport');
+            return;
+        }
+
         /** @var User $user */
         $user = $bot->getMessage()->getExtras('user');
 
-        $user->enableTransport(new NotificationTransport($notificationTransport));
+        $user->setNotificationTransport($notificationTransport);
 
         $bot->reply($this->translator->trans('notification.enabled'));
 
-        if (!$user->isEmailConfirmed()) {
+        if ($notificationTransport === NotificationTransportEnum::EMAIL && !$user->isEmailConfirmed()) {
             $bot->reply($this->translator->trans('email.request_confirmation'));
         }
     }

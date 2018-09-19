@@ -1,7 +1,6 @@
 parameters:
     locale: 'en'
     polling_interval: 'PT15H'
-    available_languages: ['en', 'ru']
 
 imports:
   - { resource: ./packages/botman.yml }
@@ -16,7 +15,6 @@ services:
         bind:
             $botName: '%env(TELEGRAM_BOT_NAME)%'
             $adminChatId: '%env(TELEGRAM_ADMIN_CHAT_ID)%'
-            $availableLanguages: '%available_languages%'
             $gitHostings: !tagged app.githosting
             $notificators: !tagged app.notificator
             $commandsWithSuggestion: !tagged app.has_suggestion

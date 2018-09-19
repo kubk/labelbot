@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Notificator;
 
 use App\Entity\User;
+use App\Enum\NotificationTransportEnum;
 use App\Queue\IssueLabeledEvent;
-use App\ValueObject\NotificationTransport;
 use BotMan\BotMan\BotMan;
 use BotMan\Drivers\Telegram\Extensions\{Keyboard, KeyboardButton};
 use Psr\Log\LoggerInterface;
@@ -38,7 +38,7 @@ class TelegramNotificator implements NotificatorInterface
 
     public function shouldNotify(User $user): bool
     {
-        return $user->getTelegramId() && $user->isTransportEnabled(NotificationTransport::telegram());
+        return $user->getTelegramId() && $user->getNotificationTransport() === NotificationTransportEnum::TELEGRAM;
     }
 
     public function notify(User $user, IssueLabeledEvent $event): void

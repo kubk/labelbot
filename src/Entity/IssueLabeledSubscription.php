@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\ValueObject\{Label, Repository};
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\{Uuid, UuidInterface};
 
@@ -24,14 +23,14 @@ class IssueLabeledSubscription
     /**
      * @var Repository
      *
-     * @ORM\Embedded(class="App\ValueObject\Repository")
+     * @ORM\Embedded(class="Repository")
      */
     private $repository;
 
     /**
      * @var Label
      *
-     * @ORM\Embedded(class="App\ValueObject\Label")
+     * @ORM\Embedded(class="Label")
      */
     private $label;
 
